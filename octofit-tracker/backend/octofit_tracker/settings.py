@@ -28,7 +28,9 @@ SECRET_KEY = 'django-insecure-%a$e(jq6$bzh7&kqaw*oa1*o+dfmvoyqt7mhgsnh*$qfjcrzrm
 DEBUG = True
 
 
+
 # Allow localhost and Codespace URL
+import os
 CODESPACE_NAME = os.environ.get('CODESPACE_NAME')
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if CODESPACE_NAME:
@@ -86,8 +88,9 @@ WSGI_APPLICATION = 'octofit_tracker.wsgi.application'
 
 
 
+
 # Database
-# Use Djongo to connect to MongoDB octofit_db
+# Usa Djongo per connettersi a MongoDB octofit_db senza autenticazione
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
@@ -95,10 +98,6 @@ DATABASES = {
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': 'mongodb://localhost:27017/',
-            'username': '',
-            'password': '',
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
         },
     }
 }
@@ -140,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
