@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
-  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/leaderboard/`;
-
+  //const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/leaderboard/`;
+  const apiUrl = "https://congenial-couscous-8000.app.github.dev/api/leaderboard";
+  
   useEffect(() => {
     fetch(apiUrl)
       .then(res => res.json())
