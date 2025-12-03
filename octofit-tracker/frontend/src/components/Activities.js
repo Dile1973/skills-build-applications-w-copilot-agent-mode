@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
-  const apiUrl = `${process.env.REACT_APP_CODESPACE_URL}/api/activities/`;
-
+  // const apiUrl = `${windows.REACT_APP_CODESPACE_URL}/api/activities/`;
+  const apiUrl = 'https://congenial-couscous-8000.app.github.dev/api/activities/';
+  
   useEffect(() => {
     fetch(apiUrl)
       .then(res => res.json())

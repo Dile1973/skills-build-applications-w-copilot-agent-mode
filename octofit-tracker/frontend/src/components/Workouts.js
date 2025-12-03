@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
-  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/workouts/`;
-
+  //const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/workouts/`;
+const apiUrl = 'https://congenial-couscous-8000.app.github.dev/api/workouts/';
   useEffect(() => {
     fetch(apiUrl)
       .then(res => res.json())

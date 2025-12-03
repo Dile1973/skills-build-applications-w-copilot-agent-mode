@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/users/`;
-
+  //const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/users/`;
+const apiUrl = 'https://congenial-couscous-8000.app.github.dev/api/users/';
   useEffect(() => {
     fetch(apiUrl)
       .then(res => res.json())
