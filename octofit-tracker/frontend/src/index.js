@@ -1,14 +1,17 @@
 
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Set REACT_APP_CODESPACE_URL from environment variable
-if (!process.env.REACT_APP_CODESPACE_URL) {
-  const codespaceName = process.env.REACT_APP_CODESPACE_NAME || window.location.hostname.split('-8000')[0];
-  process.env.REACT_APP_CODESPACE_URL = codespaceName ? `https://${codespaceName}-8000.app.github.dev` : 'http://localhost:8000';
-}
+
+window.REACT_APP_CODESPACE_URL = process.env.REACT_APP_CODESPACE_NAME
+  ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev`
+  : window.location.hostname.includes('app.github.dev')
+    ? `https://${window.location.hostname}`
+    : 'http://localhost:8000';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

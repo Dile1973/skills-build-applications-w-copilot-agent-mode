@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);
-  const apiUrl = `${process.env.REACT_APP_CODESPACE_URL}/api/teams/`;
+  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/teams/`;
 
   useEffect(() => {
     fetch(apiUrl)
@@ -10,19 +10,32 @@ const Teams = () => {
       .then(data => {
         const results = data.results || data;
         setTeams(results);
-        console.log('Teams API:', apiUrl);
+        console.log('Teams API endpoint:', apiUrl);
         console.log('Fetched teams:', results);
       });
   }, [apiUrl]);
 
   return (
-    <div>
-      <h2>Teams</h2>
-      <ul>
-        {teams.map((team, idx) => (
-          <li key={team.id || idx}>{team.name}</li>
-        ))}
-      </ul>
+    <div className="card shadow-sm mb-4">
+      <div className="card-body">
+        <h2 className="card-title text-primary mb-3">Teams</h2>
+        <table className="table table-striped table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {teams.map((team, idx) => (
+              <tr key={team.id || idx}>
+                <td>{team.name}</td>
+                <td>{team.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

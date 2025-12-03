@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
-  const apiUrl = `${process.env.REACT_APP_CODESPACE_URL}/api/activities/`;
+  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/activities/`;
 
   useEffect(() => {
     fetch(apiUrl)
@@ -10,7 +10,7 @@ const Activities = () => {
       .then(data => {
         const results = data.results || data;
         setActivities(results);
-        console.log('Activities API:', apiUrl);
+        console.log('Activities API endpoint:', apiUrl);
         console.log('Fetched activities:', results);
       });
   }, [apiUrl]);

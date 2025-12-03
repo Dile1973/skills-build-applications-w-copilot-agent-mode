@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
-  const apiUrl = `${process.env.REACT_APP_CODESPACE_URL}/api/leaderboard/`;
+  const apiUrl = `${window.REACT_APP_CODESPACE_URL}/api/leaderboard/`;
 
   useEffect(() => {
     fetch(apiUrl)
@@ -10,19 +10,32 @@ const Leaderboard = () => {
       .then(data => {
         const results = data.results || data;
         setLeaderboard(results);
-        console.log('Leaderboard API:', apiUrl);
+        console.log('Leaderboard API endpoint:', apiUrl);
         console.log('Fetched leaderboard:', results);
       });
   }, [apiUrl]);
 
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul>
-        {leaderboard.map((entry, idx) => (
-          <li key={entry.id || idx}>{entry.team?.name || 'Team'}: {entry.points} pts</li>
-        ))}
-      </ul>
+    <div className="card shadow-sm mb-4">
+      <div className="card-body">
+        <h2 className="card-title text-primary mb-3">Leaderboard</h2>
+        <table className="table table-striped table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th scope="col">Team</th>
+              <th scope="col">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderboard.map((entry, idx) => (
+              <tr key={entry.id || idx}>
+                <td>{entry.team?.name || 'Team'}</td>
+                <td>{entry.points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
